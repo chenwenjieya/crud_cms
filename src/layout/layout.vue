@@ -1,17 +1,15 @@
-<script setup lang='ts'>
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div id="layout-container">
     <div class="layout-left"></div>
     <div class="layout-right">
-      <RouterView/>
+      <RouterView />
     </div>
   </div>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #layout-container {
   display: flex;
   flex-direction: row;

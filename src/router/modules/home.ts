@@ -1,4 +1,4 @@
-const Layout = () => import("@/layout/layout.vue");
+const Layout = () => import('@/layout/layout.vue')
 
 export default {
   path: '/',

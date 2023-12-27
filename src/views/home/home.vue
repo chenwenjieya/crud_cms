@@ -1,5 +1,5 @@
-<script setup lang='ts'>
-const home = ref("home");
+<script setup lang="ts">
+const home = ref('home')
 </script>
 
 <template>
@@ -8,6 +8,4 @@ const home = ref("home");
   </div>
 </template>
 
-<style lang='scss' scoped>
-
-</style>
+<style lang="scss" scoped></style>

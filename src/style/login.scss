@@ -52,7 +52,10 @@
           text-transform: uppercase;
           margin: 15px 0;
           color: #999;
-          font: bold 200% Consolas, Monaco, monospace;
+          font:
+            bold 200% Consolas,
+            Monaco,
+            monospace;
 
           text-align: center;
         }
@@ -63,11 +66,7 @@
           height: 32px;
           line-height: 32px;
         }
-
       }
-
     }
-
   }
-
 }
