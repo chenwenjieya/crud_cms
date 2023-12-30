@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { FormInstance } from 'element-plus'
+import { ElMessage, type FormInstance } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { bg, illustration, avatar } from './utils/static'
 import { loginRules } from './utils/rule'
+import http from '@/service/userController/loginHttp'
 
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
@@ -18,11 +19,15 @@ const onLogin = async (FormEl: FormInstance | undefined) => {
 
   if (!FormEl) return
 
-  await FormEl.validate((valid, fields) => {
+  await FormEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log('submit!')
-
       // 发送请求，进行前端的登陆逻辑
+      try {
+        const result: any = await http.login(ruleForm)
+        ElMessage.success(result.msg)
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       console.log('error submit!', fields)
       loading.value = false
@@ -59,7 +64,7 @@ onBeforeUnmount(() => {
             <img :src="avatar" alt="" />
           </div>
           <h2 class="title">CRUD_CMS</h2>
-          <el-form ref="ruleFormRef" :model="ruleForm" :rules="loginRules" size="large">
+          <el-form ref="ruleFormRef" :model="ruleForm" size="large">
             <el-form-item
               :rules="[
                 {
@@ -73,7 +78,16 @@ onBeforeUnmount(() => {
               <el-input clearable v-model="ruleForm.username" placeholder="账号" />
             </el-form-item>
 
-            <el-form-item prop="password">
+            <el-form-item
+              prop="password"
+              :rules="[
+                {
+                  required: true,
+                  message: '请输入密码',
+                  trigger: 'blur'
+                }
+              ]"
+            >
               <el-input clearable show-password v-model="ruleForm.password" placeholder="密码" />
             </el-form-item>
 

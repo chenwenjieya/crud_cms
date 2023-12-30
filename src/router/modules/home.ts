@@ -3,6 +3,7 @@ const Layout = () => import('@/layout/layout.vue')
 export default {
   path: '/',
   name: '',
+  redirect: '/login',
   component: Layout,
   children: [
     {
