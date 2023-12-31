@@ -8,5 +8,9 @@ const request = `/api/user`
 export default {
   login(params: any) {
     return http.post(`${request}/login`, params)
+  },
+
+  getUserInfo() {
+    return http.post(`${request}/userInfo`)
   }
 }

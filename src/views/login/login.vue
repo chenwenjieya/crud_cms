@@ -2,8 +2,10 @@
 import { ElMessage, type FormInstance } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { bg, illustration, avatar } from './utils/static'
-import { loginRules } from './utils/rule'
 import http from '@/service/userController/loginHttp'
+import { useTokenStore } from '@/stores/token'
+import { useUserInfoStore } from '@/stores/userInfo'
+import { useRouter } from 'vue-router'
 
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
@@ -12,6 +14,9 @@ const ruleForm = reactive({
 })
 
 const loading = ref(false)
+const tokenStore = useTokenStore()
+const userInfoStore = useUserInfoStore()
+const router = useRouter()
 
 // 登陆
 const onLogin = async (FormEl: FormInstance | undefined) => {
@@ -25,8 +30,20 @@ const onLogin = async (FormEl: FormInstance | undefined) => {
       try {
         const result: any = await http.login(ruleForm)
         ElMessage.success(result.msg)
+
+        // 登陆成功后，将token存入pinia
+        tokenStore.setToken(result.data.token)
+
+        // 获取用户信息
+        const userInfo: any = await http.getUserInfo()
+        userInfoStore.setUserInfo(userInfo.data)
+
+        // 跳转到首页
+        router.push('/home')
       } catch (err) {
         console.log(err)
+      } finally {
+        loading.value = false
       }
     } else {
       console.log('error submit!', fields)

@@ -23,7 +23,7 @@ const http = {
     if (params) config.params = params
     return request(config)
   },
-  post(url: string, params: any) {
+  post(url: string, params?: any) {
     const config: AxiosConfig = {
       method: 'post',
       url: url

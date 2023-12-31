@@ -32,8 +32,6 @@ service.interceptors.request.use(
  */
 service.interceptors.response.use(
   (response) => {
-    console.log(response, 'response')
-
     // 状态码正常、还需要检验code码
     if (response.data.code && response.data.code === 200) {
       return response.data
