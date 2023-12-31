@@ -15,6 +15,11 @@ export const useUserInfoStore = defineStore(
     // 获取用户信息
     const getUserInfo = computed(() => userInfo.value)
 
+    // 删除用户信息
+    const removeUserInfo = () => {
+      userInfo.value = {}
+    }
+
     // TODO 测试代码
     // const counter = ref(0)
     // const doubleCount = computed(() => counter.value * 2)
@@ -24,10 +29,13 @@ export const useUserInfoStore = defineStore(
     return {
       userInfo,
       getUserInfo,
-      setUserInfo
+      setUserInfo,
+      removeUserInfo
     }
   },
   {
-    persist: true
+    persist: {
+      storage: sessionStorage
+    }
   }
 )

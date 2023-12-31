@@ -23,6 +23,8 @@ export const useTokenStore = defineStore(
     return { token, setToken, removeToken, getToken }
   },
   {
-    persist: true
+    persist: {
+      storage: sessionStorage
+    }
   }
 )

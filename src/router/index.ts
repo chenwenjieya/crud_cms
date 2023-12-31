@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useTokenStore } from '@/stores/token'
 
 const modules: Record<string, any> = import.meta.glob(
   ['./modules/**/*.ts', '!./modules/**/remaining.ts'],
@@ -18,6 +19,18 @@ Object.keys(modules).forEach((item) => {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...staticRoutes]
+})
+
+// 路由导航守卫
+router.beforeEach((to, from) => {
+  const tokenStore = useTokenStore()
+  console.log(to, 'to')
+  /**如果token存在，不能访问登陆页 */
+  if (to.fullPath === '/login' && tokenStore.getToken) return '/home'
+  /**如果token不存在，只能访问登陆页 */
+  if (!tokenStore.getToken && to.fullPath !== '/login') return '/login'
+
+  return true
 })
 
 export default router
