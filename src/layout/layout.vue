@@ -78,6 +78,7 @@ const handleLogout = () => logout()
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: #f0f2f5;
     .header {
       height: 48px;
       background-color: #fff;
@@ -97,8 +98,8 @@ const handleLogout = () => logout()
     .main {
       overflow: hidden;
       flex: 1;
-      background-color: #f0f2f5;
-      padding: 15px;
+      background-color: #fff;
+      margin: 10px 12px;
     }
   }
 }
