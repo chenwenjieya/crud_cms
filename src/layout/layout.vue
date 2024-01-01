@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import Vertival from './component/Vertival.vue'
+import Logo from './component/Logo.vue'
 </script>
 
 <template>
   <div id="layout-container">
     <div class="layout-left">
-      <div class="logo"></div>
+      <div class="logo">
+        <Logo />
+      </div>
       <Vertival />
       <div class="footer"></div>
     </div>
