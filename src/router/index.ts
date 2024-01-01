@@ -12,7 +12,6 @@ const modules: Record<string, any> = import.meta.glob(
 const staticRoutes: any[] = []
 
 Object.keys(modules).forEach((item) => {
-  console.log(modules[item], 'item')
   staticRoutes.push(modules[item].default)
 })
 
@@ -24,7 +23,6 @@ const router = createRouter({
 // 路由导航守卫
 router.beforeEach((to, from) => {
   const tokenStore = useTokenStore()
-  console.log(to, 'to')
   /**如果token存在，不能访问登陆页 */
   if (to.fullPath === '/login' && tokenStore.getToken) return '/home'
   /**如果token不存在，只能访问登陆页 */
