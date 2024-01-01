@@ -2,6 +2,14 @@
 import Vertival from './component/vertival.vue'
 import Logo from './component/Logo.vue'
 import breadCrumb from './component/breadCrumb.vue'
+import { useUserInfoStore } from '@/stores/userInfo'
+import { logout } from '@/hooks/logOutHook'
+
+const userInfoStore = useUserInfoStore()
+
+const userInfo = userInfoStore.getUserInfo
+
+const handleLogout = () => logout()
 </script>
 
 <template>
@@ -16,7 +24,21 @@ import breadCrumb from './component/breadCrumb.vue'
     <div class="layout-right">
       <div class="header">
         <breadCrumb />
-        <div>213</div>
+        <div class="avatar">
+          <el-dropdown trigger="click">
+            <span class="el-dropdown-link">
+              <el-avatar
+                src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+              />
+              <span style="margin-left: 10px">{{ userInfo.username }}</span>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="handleLogout">退出系统</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
       </div>
       <div class="main">
         <RouterView v-slot="{ Component }">
@@ -63,11 +85,20 @@ import breadCrumb from './component/breadCrumb.vue'
       justify-content: space-between;
       align-items: center;
       padding-left: 20px;
+      padding-right: 20px;
+
+      .avatar .el-dropdown-link {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+      }
     }
     .main {
       overflow: hidden;
       flex: 1;
       background-color: #f0f2f5;
+      padding: 15px;
     }
   }
 }
@@ -90,5 +121,12 @@ import breadCrumb from './component/breadCrumb.vue'
 .fade-right-leave-to {
   opacity: 0;
   transform: translateX(20px);
+}
+
+.example-showcase .el-dropdown-link {
+  cursor: pointer;
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
 }
 </style>
