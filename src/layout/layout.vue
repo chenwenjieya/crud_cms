@@ -1,8 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Vertival from './component/Vertival.vue'
+</script>
 
 <template>
   <div id="layout-container">
-    <div class="layout-left"></div>
+    <div class="layout-left">
+      <div class="logo"></div>
+      <Vertival />
+      <div class="footer"></div>
+    </div>
     <div class="layout-right">
       <RouterView />
     </div>
@@ -15,12 +21,24 @@
   flex-direction: row;
   height: 100vh;
   .layout-left {
-    width: 200px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    position: relative;
+    width: 210px;
+    background-color: #001529;
+    .logo {
+      height: 48px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
   }
   .layout-right {
-    border: 1px solid #ddd;
     flex: 1;
   }
 }
