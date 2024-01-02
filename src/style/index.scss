@@ -1,0 +1,14 @@
+.global_line {
+  height: 10px;
+  background-color: #f0f2f5;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: -15px;
+    width: 110%;
+    height: 10px;
+    background-color: #f0f2f5;
+  }
+}

@@ -30,3 +30,34 @@
   background: var(--el-color-primary) !important;
   border-radius: 3px;
 }
+
+.table_row {
+  height: 45px;
+}
+
+.table_header_row {
+  background-color: #f5f7fa !important;
+  height: 45px;
+  .table_header_cell {
+    background-color: #f5f7fa !important;
+    color: #303133 !important;
+  }
+}
+
+.el-dialog__header {
+  background-color: cornflowerblue;
+  margin-right: 0 !important;
+  .el-dialog__title {
+    color: #fff;
+  }
+  .el-dialog__headerbtn {
+    .el-dialog__close {
+      color: #fff;
+    }
+  }
+
+  .el-dialog__headerbtn:focus .el-dialog__close,
+  .el-dialog__headerbtn:hover .el-dialog__close {
+    color: #fff;
+  }
+}

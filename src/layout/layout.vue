@@ -76,6 +76,7 @@ const handleLogout = () => logout()
   }
   .layout-right {
     flex: 1;
+    max-width: calc(100vw - 210px);
     display: flex;
     flex-direction: column;
     background-color: #f0f2f5;
@@ -100,6 +101,12 @@ const handleLogout = () => logout()
       flex: 1;
       background-color: #fff;
       margin: 10px 12px;
+      color: #000;
+
+      .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
     }
   }
 }

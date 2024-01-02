@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { useTokenStore } from '@/stores/token'
 
@@ -27,11 +28,20 @@ service.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
+interface ResponseData extends AxiosResponse {
+  code: number
+  data: any
+  msg: string
+  total?: number
+  size?: number
+  current?: number
+}
+
 /**
  * 响应拦截
  */
 service.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse<ResponseData>) => {
     // 状态码正常、还需要检验code码
     if (response.data.code && response.data.code === 200) {
       return response.data
