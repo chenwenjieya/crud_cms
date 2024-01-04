@@ -37,7 +37,6 @@ const renderTable = async () => {
 // 查询
 const handleSearch = () => {
   searchForm.pageNum = 1
-  searchForm.pageSize = 10
   renderTable()
 }
 
@@ -156,7 +155,7 @@ const closeModel = () => {
 </script>
 <template>
   <div class="container role_container">
-    <div style="padding: 18px 18px 0; box-sizing: border-box" class="card">
+    <div style="padding: 18px 18px 0" class="card">
       <el-form :model="searchForm">
         <div
           style="

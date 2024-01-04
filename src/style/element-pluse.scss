@@ -61,3 +61,13 @@
     color: #fff;
   }
 }
+
+.el-tree-node.is-current {
+  background-color: #f5f7fa;
+}
+
+.el-button:focus {
+  // background-color: var(--el-button-bg-color)!important;
+  // color: var(--el-button-text-color)!important;
+  // border-color: var(--el-border)!important;
+}

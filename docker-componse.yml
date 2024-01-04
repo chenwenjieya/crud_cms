@@ -1,0 +1,44 @@
+version : '3'
+services:
+  mysqlschool1:
+    container_name: mysqlschool1
+    build:
+      context: ./mysql/
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./DockerVolumes/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: 'school'
+      MYSQL_ROOT_PASSWORD: chenjie+00  #数据库root用户密码
+    networks:
+      - schoolnet
+  nginxschool1:
+    container_name: nginxschool1
+    image: nginx
+    ports:
+      - "8090:80"
+    volumes:
+      - /home/DockerProject/DockerVolumes/nginx/conf:/etc/nginx
+      - /home/DockerProject/DockerVolumes/nginx/logs:/var/log/nginx
+      - /home/DockerProject/DockerVolumes/nginx/html:/usr/share/nginx/html
+    networks:
+      - schoolnet
+    depends_on:
+      - javaschool1
+  javaschool1:
+    container_name: javaschool1
+    build:
+      context: ./java/
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    networks:
+      - schoolnet
+    depends_on:
+      - mysqlschool1
+networks:
+  schoolnet:
+    driver: bridge
+    name: myschoolnet
